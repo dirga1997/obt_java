@@ -1,0 +1,32 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: java-standard
+  namespace: ait-standard
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+    nginx.org/client-max-body-size: "10m"
+spec:
+  tls:
+    - hosts:
+        - ait-java-standard.akarinti.tech
+      secretName: letsencrypt-ca
+  rules:
+    - host: ait-java-standard.akarinti.tech
+      http:
+        paths:
+          - backend:
+              service:
+                name: java-standard-svc
+                port:
+                  number: 8080
+            path: /api/?(.*)
+            pathType: Prefix
+status:
+  loadBalancer:
+    ingress:
+      - ip: 159.89.202.56

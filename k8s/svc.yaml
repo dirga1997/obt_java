@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-standard-svc
+  namespace: ait-standard
+  labels:
+    app: java-standard
+    service: ait-standard
+spec:
+  selector:
+    app: java-standard
+    service: ait-standard
+  ports:
+    - name: http-port
+      port: 8080

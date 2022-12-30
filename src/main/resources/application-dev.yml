@@ -1,0 +1,17 @@
+#Profile: dev
+server:
+  port: 8081
+
+restclient:
+  url:
+    jsonplaceholder-client: https://jsonplaceholder.typicode.com
+    reqres-client: https://reqres.in/api
+    user-client: https://reqres.in/api
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:54333/obtdb
+    username: obt
+    password: obt2022
+  flyway:
+    enabled: false

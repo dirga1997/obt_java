@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-standard-depl
+  namespace: ait-standard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-standard
+      service: ait-standard
+  template:
+    metadata:
+      labels:
+        app: java-standard
+        service: ait-standard
+        sidecar.istio.io/inject: "true"
+        version: "1"
+    spec:
+      imagePullSecrets:
+        - name: registry-secret
+      containers:
+      - name: java-standard
+        image: ait-cr.akarinti.tech/java-standard
+        ports:
+          - name: java-standard
+            protocol: TCP
+            containerPort: 8080
