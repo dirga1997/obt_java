@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @AllArgsConstructor
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+    @Autowired
     private UserOBTDelegateImpl userDelegate;
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
@@ -35,16 +36,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity security) throws Exception {
+        System.out.println(44);
         security.csrf().disable()
-                .authorizeRequests().antMatchers("/authenticate").permitAll()
-                .anyRequest().authenticated().and().sessionManagement()
+                .authorizeRequests()
+                .antMatchers("/auth/login").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         security.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
     @Bean
     public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
+        return new BCryptPasswordEncoder();
     }
 
     @Override

@@ -7,5 +7,5 @@ import com.ait.project.template.shared.dto.template.ResponseTemplate;
 import org.springframework.http.ResponseEntity;
 
 public interface AuthService {
-    ResponseEntity<ResponseTemplate<ResponseDetail<String>>> login(LoginRequestDTO loginRequestDTO);
+    ResponseEntity<ResponseTemplate<ResponseDetail<LoginResponseDTO>>> login(LoginRequestDTO loginRequestDTO);
 }

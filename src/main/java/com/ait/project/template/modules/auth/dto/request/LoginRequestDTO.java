@@ -10,11 +10,11 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 public class LoginRequestDTO {
 
-    @NotBlank
+    @NotBlank(message = "{body.required}")
     @JsonProperty("user_email")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "{body.required}")
     @JsonProperty("user_password")
     private String password;
 }

@@ -8,5 +8,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AuthTransform {
 
-    String createAuthResponse(String token);
+    LoginResponseDTO createAuthResponse(LoginResponseDTO loginResponseDTO);
 }

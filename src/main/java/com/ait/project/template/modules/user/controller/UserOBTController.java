@@ -8,6 +8,7 @@ import com.ait.project.template.shared.dto.template.ResponseDetail;
 import lombok.RequiredArgsConstructor;
 import com.ait.project.template.shared.dto.template.ResponseList;
 import com.ait.project.template.shared.dto.template.ResponseTemplate;
+import lombok.SneakyThrows;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
