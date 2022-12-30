@@ -1,7 +1,8 @@
 package com.ait.project.template.modules.user.service.internal.impl;
 
-import com.ait.project.template.modules.user.dto.request.CreateUserOBTOBTRequestDTO;
-import com.ait.project.template.modules.user.dto.request.UpdateUserOBTOBTRequestDTO;
+import com.ait.project.template.config.security.jwt.configuration.SecurityConfiguration;
+import com.ait.project.template.modules.user.dto.request.CreateUserOBTRequestDTO;
+import com.ait.project.template.modules.user.dto.request.UpdateUserOBTRequestDTO;
 import com.ait.project.template.modules.user.dto.response.UserOBTResponseDTO;
 import com.ait.project.template.modules.user.model.entity.UserOBT;
 import com.ait.project.template.modules.user.service.delegate.UserOBTDelegate;
@@ -17,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,8 @@ public class UserOBTServiceImpl implements UserOBTService {
     private final UserOBTClient userOBTClient;
 
     private final UserOBTTransform userOBTTransform;
+
+    private final SecurityConfiguration securityConfiguration;
 
     @Override
     public ResponseEntity<ResponseTemplate<ResponseList<UserOBTResponseDTO>>> getAllUser() {
@@ -62,7 +66,10 @@ public class UserOBTServiceImpl implements UserOBTService {
     }
 
     @Override
-    public ResponseEntity<ResponseTemplate<ResponseDetail<UserOBTResponseDTO>>> addUser(CreateUserOBTOBTRequestDTO createUserOBTRequestDTO) {
+    public ResponseEntity<ResponseTemplate<ResponseDetail<UserOBTResponseDTO>>> addUser(CreateUserOBTRequestDTO createUserOBTRequestDTO) {
+//        PasswordEncoder passwordEncoder = securityConfiguration.passwordEncoder();
+//        String passwordEncoded = passwordEncoder.encode(createUserOBTRequestDTO.getUserPassword());
+//        createUserOBTRequestDTO.setUserPassword(passwordEncoded);
         userOBTClient.createUser(userOBTTransform.createUserRequest(createUserOBTRequestDTO));
         UserOBT userOBT =
                 userOBTDelegate.save(userOBTTransform.createEntityUser(createUserOBTRequestDTO));
@@ -71,10 +78,13 @@ public class UserOBTServiceImpl implements UserOBTService {
     }
 
     @Override
-    public ResponseEntity<ResponseTemplate<ResponseDetail<UserOBTResponseDTO>>> updateUser(long userId, UpdateUserOBTOBTRequestDTO updateUserRequestDTO) {
+    public ResponseEntity<ResponseTemplate<ResponseDetail<UserOBTResponseDTO>>> updateUser(long userId, UpdateUserOBTRequestDTO updateUserRequestDTO) {
+        System.out.println(983);
         userOBTClient.updateUser(userOBTTransform.updateUserRequest(updateUserRequestDTO));
+        System.out.println(9999);
         UserOBT userOBT =
                 userOBTDelegate.update(userId, userOBTTransform.updateEntityUser(updateUserRequestDTO));
+        System.out.println(1111);
         return responseHelper.createResponseDetail(ResponseEnum.SUCCESS,
                 userOBTTransform.createUserResponse(userOBT));
     }

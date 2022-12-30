@@ -27,8 +27,6 @@ public class AuthController implements AuthService {
             @RequestBody
             LoginRequestDTO loginRequestDTO
     ) {
-        System.out.println("rest login");
-        System.out.println(loginRequestDTO);
         return authService.login(loginRequestDTO);
     }
 }

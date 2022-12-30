@@ -24,8 +24,6 @@ import static java.util.Collections.emptyList;
 @RequiredArgsConstructor
 public class UserOBTDelegateImpl implements UserOBTDelegate, UserDetailsService {
 
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
     private final UserOBTRepository userOBTRepository;
 //    private org.springframework.security.core.userdetails.User coreUser;
 
@@ -64,6 +62,7 @@ public class UserOBTDelegateImpl implements UserOBTDelegate, UserDetailsService 
 
     @Override
     public UserOBT save(UserOBT userOBT) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         userOBT.setUserPassword(bCryptPasswordEncoder.encode(userOBT.getUserPassword()));
         return userOBTRepository.save(userOBT);
     }
@@ -71,11 +70,14 @@ public class UserOBTDelegateImpl implements UserOBTDelegate, UserDetailsService 
     @SneakyThrows
     @Override
     public UserOBT update(long userId, UserOBT userOBT) {
+        System.out.println(3142);
+        System.out.println(userOBT);
         UserOBT userOBT1 = this.getUserById(userId);
         userOBT1.setUserName(userOBT.getUserName() != null ? userOBT.getUserName() : userOBT1.getUserName());
         userOBT1.setUserAddress(userOBT.getUserAddress() != null ? userOBT.getUserAddress() : userOBT1.getUserAddress());
         userOBT1.setUserEmail(userOBT.getUserEmail() != null ? userOBT.getUserEmail() : userOBT1.getUserEmail());
-        userOBT1.setUserPassword(userOBT.getUserPassword() != null ? bCryptPasswordEncoder.encode(userOBT.getUserPassword()) : userOBT1.getUserPassword());
+        userOBT1.setUserPassword(userOBT.getUserPassword() != null ? userOBT.getUserPassword() : userOBT1.getUserPassword());
+        System.out.println(userOBT1);
         return this.save(userOBT1);
     }
 

@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 
 @Data
 @NoArgsConstructor
-public class CreateUserOBTOBTRequestDTO extends UserOBTRequestDTO {
+public class CreateUserOBTRequestDTO extends UserOBTRequestDTO {
 
 	@NotBlank(message = "{body.required}")
 	@JsonProperty("user_name")

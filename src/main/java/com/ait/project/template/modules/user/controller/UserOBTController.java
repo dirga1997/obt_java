@@ -1,14 +1,13 @@
 package com.ait.project.template.modules.user.controller;
 
-import com.ait.project.template.modules.user.dto.request.CreateUserOBTOBTRequestDTO;
-import com.ait.project.template.modules.user.dto.request.UpdateUserOBTOBTRequestDTO;
+import com.ait.project.template.modules.user.dto.request.CreateUserOBTRequestDTO;
+import com.ait.project.template.modules.user.dto.request.UpdateUserOBTRequestDTO;
 import com.ait.project.template.modules.user.dto.response.UserOBTResponseDTO;
 import com.ait.project.template.modules.user.service.internal.UserOBTService;
 import com.ait.project.template.shared.dto.template.ResponseDetail;
 import lombok.RequiredArgsConstructor;
 import com.ait.project.template.shared.dto.template.ResponseList;
 import com.ait.project.template.shared.dto.template.ResponseTemplate;
-import lombok.SneakyThrows;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -44,7 +43,7 @@ public class UserOBTController implements UserOBTService {
     public ResponseEntity<ResponseTemplate<ResponseDetail<UserOBTResponseDTO>>> addUser(
             @Valid
             @RequestBody
-            CreateUserOBTOBTRequestDTO createUserOBTRequestDTO
+            CreateUserOBTRequestDTO createUserOBTRequestDTO
     ) {
         return userOBTService.addUser(createUserOBTRequestDTO);
     }
@@ -56,7 +55,7 @@ public class UserOBTController implements UserOBTService {
             long userId,
             @Valid
             @RequestBody
-            UpdateUserOBTOBTRequestDTO updateUserRequestDTO
+            UpdateUserOBTRequestDTO updateUserRequestDTO
     ) {
         return userOBTService.updateUser(userId, updateUserRequestDTO);
     }

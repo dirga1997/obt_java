@@ -7,7 +7,7 @@ import javax.annotation.CheckForNull;
 import javax.validation.constraints.Email;
 
 @Data
-public class UpdateUserOBTOBTRequestDTO extends UserOBTRequestDTO {
+public class UpdateUserOBTRequestDTO extends UserOBTRequestDTO {
 
     @CheckForNull
     private long userId;

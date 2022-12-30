@@ -1,7 +1,7 @@
 package com.ait.project.template.modules.user.transform;
 
-import com.ait.project.template.modules.user.dto.request.CreateUserOBTOBTRequestDTO;
-import com.ait.project.template.modules.user.dto.request.UpdateUserOBTOBTRequestDTO;
+import com.ait.project.template.modules.user.dto.request.CreateUserOBTRequestDTO;
+import com.ait.project.template.modules.user.dto.request.UpdateUserOBTRequestDTO;
 import com.ait.project.template.modules.user.dto.response.UserOBTResponseDTO;
 import com.ait.project.template.modules.user.model.entity.UserOBT;
 import com.ait.project.template.shared.openfeign.user.request.CreateUserOBTRequest;
@@ -17,9 +17,9 @@ public interface UserOBTTransform {
 
     List<UserOBT> createUserList(List<UserOBTResponseDTO> userResponseList);
 
-    CreateUserOBTRequest createUserRequest(CreateUserOBTOBTRequestDTO createUserOBTRequestDTO);
+    CreateUserOBTRequest createUserRequest(CreateUserOBTRequestDTO createUserOBTRequestDTO);
 
-    UserOBT createEntityUser(CreateUserOBTOBTRequestDTO createUserOBTRequestDTO);
+    UserOBT createEntityUser(CreateUserOBTRequestDTO createUserOBTRequestDTO);
 
     UserOBTResponseDTO createUserResponse(UserOBT userOBT);
 
@@ -27,8 +27,8 @@ public interface UserOBTTransform {
         return null;
     }
 
-    UpdateUserOBTRequest updateUserRequest(UpdateUserOBTOBTRequestDTO updateUserRequestDTO);
+    UpdateUserOBTRequest updateUserRequest(UpdateUserOBTRequestDTO updateUserRequestDTO);
 
-    UserOBT updateEntityUser(UpdateUserOBTOBTRequestDTO updateUserRequestDTO);
+    UserOBT updateEntityUser(UpdateUserOBTRequestDTO updateUserRequestDTO);
 
 }
