@@ -51,7 +51,7 @@ public class AuthServiceImpl implements AuthService {
                 .authenticate(
                         new UsernamePasswordAuthenticationToken(userOBT.getUserEmail(), userOBT.getUserPassword()
                         ));
-        UserDetails userDetails = userOBTDelegate.loadUserByUsername(loginRequestDTO.getEmail());.
+        UserDetails userDetails = userOBTDelegate.loadUserByUsername(loginRequestDTO.getEmail());
         final String jwt = jwtUtil.generateToken(userDetails);
         loginResponseDTO.setAccessToken(jwt);
 
